@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 class Siswa extends Component {
     constructor () {
@@ -28,6 +29,7 @@ class Siswa extends Component {
         return (
             <div>
                 <h1>Data Siswa</h1>
+                <Link to="/siswa/create"  className="btn btn-primary">Tambah Siswa</Link>
                 <table className="table">
                     <thead>
                         <th>Nama</th>
