@@ -21,8 +21,16 @@ class Siswa extends Component {
         }
     }
     componentDidMount () {
+        this.getInitialData()
+    }
+    getInitialData = () => {
         axios.get('http://localhost:4000/siswas').then(res => {
             this.setState({siswa: res.data.data})
+        }).catch(err => console.log(err))
+    }
+    handleDelete = (id) => {
+        axios.delete(`http://localhost:4000/siswas/${id}`).then(res => {
+            this.getInitialData()
         }).catch(err => console.log(err))
     }
     render () {
@@ -35,6 +43,7 @@ class Siswa extends Component {
                         <th>Nama</th>
                         <th>Alamat</th>
                         <th>Kelas</th>
+                        <th>Aksi</th>
                     </thead>
                     <tbody>
                         {
@@ -44,6 +53,14 @@ class Siswa extends Component {
                                         <td> { data.nama } </td>
                                         <td> { data.alamat } </td>
                                         <td> { data.kelas } </td>
+                                        <td>
+                                            <button
+                                                className="btn btn-danger"
+                                                onClick={() => this.handleDelete(data.id)}
+                                                >
+                                                    Delete
+                                                </button>
+                                        </td>
                                     </tr>
                                 )
                             })
