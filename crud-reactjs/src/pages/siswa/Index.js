@@ -31,7 +31,7 @@ class Siswa extends Component {
     handleDelete = (id) => {
         axios.delete(`http://localhost:4000/siswas/${id}`).then(res => {
             this.getInitialData()
-        }).catch(err => console.log(err))
+        }).then(alert('success delete')).catch(err => console.log(err))
     }
     render () {
         return (
