@@ -21,7 +21,7 @@ class Siswa extends Component {
         }
     }
     componentDidMount () {
-        axios.get('http://localhost:3000/siswas').then(res => {
+        axios.get('http://localhost:4000/siswas').then(res => {
             this.setState({siswa: res.data.data})
         }).catch(err => console.log(err))
     }
