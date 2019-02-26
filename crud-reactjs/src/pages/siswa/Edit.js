@@ -17,8 +17,12 @@ class SiswaEdit extends Component {
         this.getData()
     }
     getData = () => {
+        const token = localStorage.getItem('token')
+        const headers = {
+            token: token
+        }
         const siswaId = this.props.match.params.id
-        axios.get(`http://localhost:4000/siswas/${siswaId}`).then(res => {
+        axios.get(`http://localhost:4000/siswas/${siswaId}`, {headers}).then(res => {
             const { nama, alamat, kelas } = res.data.data
             this.setState({
                 nama,
@@ -28,9 +32,13 @@ class SiswaEdit extends Component {
         }).catch(err => console.log(err))
     }
     handleSubmit = (e) => {
+        const token = localStorage.getItem('token')
+        const headers = {
+            token: token
+        }
         const siswaId = this.props.match.params.id
         const { nama, alamat, kelas } = this.state
-        axios.put(`http://localhost:4000/siswas/${siswaId}`, {nama, alamat, kelas}).then(res => {
+        axios.put(`http://localhost:4000/siswas/${siswaId}`, {nama, alamat, kelas}, {headers}).then(res => {
             this.props.history.push('/siswa')
         }).catch(err => console.log(err))
         e.preventDefault()

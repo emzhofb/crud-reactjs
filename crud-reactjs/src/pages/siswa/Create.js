@@ -50,12 +50,16 @@ class SiswaCreate extends Component {
         return formIsValid
     }
     handleSubmit = (e) => {
+        const token = localStorage.getItem('token')
+        const headers = {
+            token: token
+        }
         const { nama, alamat, kelas } = this.state
         console.log(nama, alamat, kelas)
         e.preventDefault()
         if (this.handleValidation()) {
             alert('Berhasil menambah siswa')
-            axios.post("http://localhost:4000/siswas", {nama, alamat, kelas}).then(res => {
+            axios.post("http://localhost:4000/siswas", {nama, alamat, kelas}, {headers}).then(res => {
                 this.props.history.push('/siswa')
             }).catch(err => console.log(err))
         } else {

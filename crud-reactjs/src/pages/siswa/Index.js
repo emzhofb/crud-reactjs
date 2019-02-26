@@ -24,12 +24,20 @@ class Siswa extends Component {
         this.getInitialData()
     }
     getInitialData = () => {
-        axios.get('http://localhost:4000/siswas').then(res => {
+        const token = localStorage.getItem('token')
+        const headers = {
+            token: token
+        }
+        axios.get('http://localhost:4000/siswas', {headers}).then(res => {
             this.setState({siswa: res.data.data})
         }).catch(err => console.log(err))
     }
     handleDelete = (id) => {
-        axios.delete(`http://localhost:4000/siswas/${id}`).then(res => {
+        const token = localStorage.getItem('token')
+        const headers = {
+            token: token
+        }
+        axios.delete(`http://localhost:4000/siswas/${id}`, {headers}).then(res => {
             this.getInitialData()
         }).then(alert('success delete')).catch(err => console.log(err))
     }
