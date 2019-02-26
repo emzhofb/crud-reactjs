@@ -37,7 +37,7 @@ class Siswa extends Component {
         return (
             <div>
                 <h1>Data Siswa</h1>
-                <Link to="/siswa/create"  className="btn btn-primary">Tambah Siswa</Link>
+                <Link to="/siswa/create" className="btn btn-primary">Tambah Siswa</Link>
                 <table className="table">
                     <thead>
                         <th>Nama</th>
@@ -56,10 +56,10 @@ class Siswa extends Component {
                                         <td>
                                             <button
                                                 className="btn btn-danger"
-                                                onClick={() => this.handleDelete(data.id)}
+                                                onClick={() => {if (window.confirm('Seriously ?')) {this.handleDelete(data.id)}}}
                                                 >
-                                                    Delete
-                                                </button>
+                                                Delete
+                                            </button>
                                         </td>
                                     </tr>
                                 )

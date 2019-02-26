@@ -14,20 +14,19 @@ class SiswaCreate extends Component {
         }
     }
     handleValidation = () => {
-        let nama = this.state.nama
-        let alamat = this.state.alamat
-        let kelas = this.state.kelas
+        const nama = this.state.nama
+        const alamat = this.state.alamat
+        const kelas = this.state.kelas
         let errorNama = this.state.errorNama
         let errorAlamat = this.state.errorAlamat
         let errorKelas = this.state.errorKelas
         let formIsValid = true
-
         // nama
         if (!nama) {
             formIsValid = false
             errorNama = 'Cannot be empty'
         } else if (typeof nama !== "undefined") {
-            if (!nama.match(/^[a-zA-Z]+$/)) {
+            if (!nama.match(/^[a-zA-Z\s]+$/)) {
                 formIsValid = false
                 errorNama = 'Only letters'
             }
@@ -47,7 +46,6 @@ class SiswaCreate extends Component {
                 errorKelas = 'Only Numbers'
             }
         }
-
         this.setState({errorNama: errorNama, errorAlamat: errorAlamat, errorKelas: errorKelas})
         return formIsValid
     }
@@ -56,7 +54,7 @@ class SiswaCreate extends Component {
         console.log(nama, alamat, kelas)
         e.preventDefault()
         if (this.handleValidation()) {
-            alert('Berhasil menambah manusia')
+            alert('Berhasil menambah siswa')
             axios.post("http://localhost:4000/siswas", {nama, alamat, kelas}).then(res => {
                 this.props.history.push('/siswa')
             }).catch(err => console.log(err))
