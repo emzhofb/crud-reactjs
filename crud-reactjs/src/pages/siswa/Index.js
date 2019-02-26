@@ -33,6 +33,9 @@ class Siswa extends Component {
             this.getInitialData()
         }).then(alert('success delete')).catch(err => console.log(err))
     }
+    handleEdit = (id) => {
+        this.props.history.push(`/siswa/edit/${id}`)
+    }
     render () {
         return (
             <div>
@@ -54,6 +57,12 @@ class Siswa extends Component {
                                         <td> { data.alamat } </td>
                                         <td> { data.kelas } </td>
                                         <td>
+                                            <button
+                                                className="btn btn-warning"
+                                                onClick={() => {this.handleEdit(data.id)}}
+                                                >
+                                                Edit
+                                            </button>
                                             <button
                                                 className="btn btn-danger"
                                                 onClick={() => {if (window.confirm('Seriously ?')) {this.handleDelete(data.id)}}}
