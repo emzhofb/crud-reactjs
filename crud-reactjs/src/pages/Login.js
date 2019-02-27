@@ -27,7 +27,7 @@ class Login extends Component {
         e.preventDefault()
     }
     render () {
-        const token = !!localStorage.getItem('token')
+        const token = localStorage.getItem('token')
         if (token) {
             return (
                 <Redirect to="/" />
@@ -66,7 +66,7 @@ class Login extends Component {
                         </input>
                     </div>
                     <button type="submit" className="btn btn-primary">
-                        Submit
+                        Login
                     </button>
                 </form>
             </div>

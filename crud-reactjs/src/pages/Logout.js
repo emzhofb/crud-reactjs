@@ -1,0 +1,13 @@
+import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
+
+class Logout extends Component {
+    render () {
+        localStorage.clear('token')
+        return (
+            <Redirect to="/login" />
+        )
+    }
+}
+
+export default Logout
