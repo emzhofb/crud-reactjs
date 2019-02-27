@@ -55,7 +55,7 @@ class SiswaCreate extends Component {
             token: token
         }
         const { nama, alamat, kelas } = this.state
-        console.log(nama, alamat, kelas)
+        // console.log(nama, alamat, kelas)
         e.preventDefault()
         if (this.handleValidation()) {
             alert('Berhasil menambah siswa')

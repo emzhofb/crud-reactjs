@@ -1,23 +1,12 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 class Siswa extends Component {
     constructor () {
         super()
         this.state = {
-            siswa: [
-                {
-                    nama: 'Budi',
-                    alamat: 'Jakarta',
-                    kelas: 1
-                },
-                {
-                    nama: 'Yadi',
-                    alamat: 'Lampung',
-                    kelas: 3
-                }
-            ]
+            siswa: []
         }
     }
     componentDidMount () {
@@ -45,6 +34,12 @@ class Siswa extends Component {
         this.props.history.push(`/siswa/edit/${id}`)
     }
     render () {
+        const token = localStorage.getItem('token')
+        if (!token) {
+            return (
+                <Redirect to="/login" />
+            )
+        }
         return (
             <div>
                 <h1>Data Siswa</h1>

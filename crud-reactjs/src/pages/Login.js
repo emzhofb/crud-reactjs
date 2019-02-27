@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
     constructor () {
@@ -26,12 +27,18 @@ class Login extends Component {
         e.preventDefault()
     }
     render () {
+        const token = !!localStorage.getItem('token')
+        if (token) {
+            return (
+                <Redirect to="/" />
+            )
+        }
         return (
             <div>
                 <h1>Login</h1>
                 {
                     this.state.message !== '' && (
-                        <div class="alert alert-danger" role="alert">
+                        <div className="alert alert-danger" role="alert">
                             {this.state.message}
                         </div>
                     )

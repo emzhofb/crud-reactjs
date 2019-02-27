@@ -1,5 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 
-const Home = () => <h2>Home</h2>
+class Home extends Component {
+    render () {
+        const token = localStorage.getItem('token')
+        if (!token) {
+            return (
+                <Redirect to="/login" />
+            )
+        }
+        return (
+            <h1>Home</h1>
+        )
+    }
+}
 
 export default Home
